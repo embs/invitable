@@ -1,6 +1,6 @@
   class Invitation < ActiveRecord::Base
     validates_presence_of :email, :hostable, :user
-    validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/
+    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})\z/
     validates_uniqueness_of :email, :scope => [:hostable_id, :hostable_type]
 
     validate :validate_invitee, :on => :create
